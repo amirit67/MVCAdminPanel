@@ -1,0 +1,98 @@
+﻿@model DataLayer.terminal_detail
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>terminal_detail</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.terminal_groups.group_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.terminal_groups.group_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.acceptor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.acceptor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.terminal_number)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.terminal_number)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.place_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.place_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.place_phone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.place_phone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.serial_number)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.serial_number)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.is_access)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.is_access)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.is_authenticate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.is_authenticate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.createDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.createDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.modifiedDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.modifiedDate)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
