@@ -7,13 +7,13 @@ namespace DataLayer.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class Initial_Database : IMigrationMetadata
+    public sealed partial class AdminLogin : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Initial_Database));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AdminLogin));
         
         string IMigrationMetadata.Id
         {
-            get { return "202106020800385_Initial_Database"; }
+            get { return "202106040934016_AdminLogin"; }
         }
         
         string IMigrationMetadata.Source

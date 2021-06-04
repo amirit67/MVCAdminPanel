@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.Net.Compilers.3.3.1\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.3.3.1\build\Microsoft.Net.Compilers.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -51,27 +52,45 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Context\MyCmsContext.cs" />
-    <Compile Include="Migrations\202106020800385_Initial_Database.cs" />
-    <Compile Include="Migrations\202106020800385_Initial_Database.Designer.cs">
-      <DependentUpon>202106020800385_Initial_Database.cs</DependentUpon>
+    <Compile Include="Migrations\202106040637456_init_Database.cs" />
+    <Compile Include="Migrations\202106040637456_init_Database.Designer.cs">
+      <DependentUpon>202106040637456_init_Database.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202106040934016_AdminLogin.cs" />
+    <Compile Include="Migrations\202106040934016_AdminLogin.Designer.cs">
+      <DependentUpon>202106040934016_AdminLogin.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\AdminLogin.cs" />
     <Compile Include="Models\terminal_detail.cs" />
     <Compile Include="Models\terminal_groups.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\ILoginRepository.cs" />
     <Compile Include="Repositories\ITerminalGroupRepository.cs" />
     <Compile Include="Repositories\ITerminalDetailRepository.cs" />
+    <Compile Include="Services\LoginRepository.cs" />
     <Compile Include="Services\TerminalGroupRepository.cs" />
     <Compile Include="Services\TerminalDetailRepository.cs" />
+    <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\ShowGroupViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202106020800385_Initial_Database.resx">
-      <DependentUpon>202106020800385_Initial_Database.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202106040637456_init_Database.resx">
+      <DependentUpon>202106040637456_init_Database.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106040934016_AdminLogin.resx">
+      <DependentUpon>202106040934016_AdminLogin.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.3.3.1\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.3.3.1\build\Microsoft.Net.Compilers.props'))" />
+  </Target>
 </Project>

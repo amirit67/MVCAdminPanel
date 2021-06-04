@@ -10,15 +10,18 @@ using DataLayer;
 
 namespace AdminPanel.Areas.Admin.Controllers
 {
+    [Authorize]
     public class TerminalDetailController : Controller
     {
         private ITerminalDetailRepository terminalDetailRepository;
+        private ITerminalGroupRepository terminalGroupRepository;
 
         MyCmsContext db = new MyCmsContext();
 
         public TerminalDetailController()
         {
             terminalDetailRepository = new TerminalDetailRepository(db);
+            terminalGroupRepository = new TerminalGroupRepository(db);
         }
 
         // GET: Admin/TerminalDetail
@@ -60,12 +63,14 @@ namespace AdminPanel.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 terminal_detail.id = Guid.NewGuid();
+                terminal_detail.createDate = DateTime.Now;
+                terminal_detail.modifiedDate = DateTime.Now;
                 terminalDetailRepository.InsertTerminal(terminal_detail);
                 terminalDetailRepository.Save();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.group_id = new SelectList(db.terminal_Groups, "group_id", "group_name", terminal_detail.group_id);
+            ViewBag.group_id = new SelectList(terminalGroupRepository.GetAllGroup(), "group_id", "group_name", terminal_detail.group_id);
             return View(terminal_detail);
         }
 
@@ -76,12 +81,12 @@ namespace AdminPanel.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            terminal_detail terminal_detail = db.terminal_Details.Find(id);
+            terminal_detail terminal_detail = terminalDetailRepository.GetTerminalById(id.Value);
             if (terminal_detail == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.group_id = new SelectList(db.terminal_Groups, "group_id", "group_name", terminal_detail.group_id);
+            ViewBag.group_id = new SelectList(terminalGroupRepository.GetAllGroup(), "group_id", "group_name", terminal_detail.group_id);
             return View(terminal_detail);
         }
 
@@ -132,6 +137,8 @@ namespace AdminPanel.Areas.Admin.Controllers
         {
             if (disposing)
             {
+                terminalDetailRepository.Dispose();
+                terminalGroupRepository.Dispose();
                 db.Dispose();
             }
             base.Dispose(disposing);

@@ -11,6 +11,7 @@ namespace DataLayer
     {
         [Key]
         public Guid id { get; set; }
+        [Display(Name = "نام گروه")]
         public Guid group_id { get; set; }
         [Display(Name ="شماره پذیرندگی")]
         public string acceptor { get; set; }
@@ -22,16 +23,16 @@ namespace DataLayer
         public string place_name { get; set; }
         [Display(Name = "تلفن پذیرنده")]
         public string place_phone { get; set; }
-        [Display(Name = "تلفن پذیرنده")]
+        [Display(Name = "شماره سریال")]
         public string serial_number { get; set; }
         [Display(Name = "دسترسی")]
         public string is_access { get; set; }
         [Display(Name = "احراز هویت")]
-        public string is_authenticate { get; set; }
+        public bool is_authenticate { get; set; }
         [Display(Name = "تاریخ ایجاد")]
-        public string createDate { get; set; }
-   
-
+        [DisplayFormat(DataFormatString ="{0: yyyy/MM/dd}")]
+        public DateTime createDate { get; set; }
+        public DateTime modifiedDate { get; set; }
 
         public virtual terminal_groups terminal_groups { get; set; }
 

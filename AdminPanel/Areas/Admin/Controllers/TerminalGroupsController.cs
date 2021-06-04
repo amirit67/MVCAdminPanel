@@ -10,6 +10,7 @@ using DataLayer;
 
 namespace AdminPanel.Areas.Admin.Controllers
 {
+    [Authorize]
     public class TerminalGroupsController : Controller
     {
         ITerminalGroupRepository terminalGroupRepository;
